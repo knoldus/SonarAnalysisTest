@@ -21,7 +21,7 @@ jobs:
         SONAR_TOKEN: 7f4f980a7c629ec0d919bd55cb9c8d9eb435bc37
       with:
         args: >
-          -Dsonar.organization=knoldus
+          -Dsonar.organization=knoldus-techhub-repo
           -Dsonar.projectKey=SonarAnalysisTest
           -Dsonar.sources=.
           -Dsonar.host.url=https://sonarcloud.io
