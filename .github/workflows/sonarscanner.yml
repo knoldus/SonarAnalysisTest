@@ -1,0 +1,28 @@
+# Every variable annotated with '@' needs to be replaced with user provided data.
+# The '@' needs to be removed when place-hold is replaced
+
+on:
+  push:
+    branches:
+      - master
+name: Main Workflow
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: 7f4f980a7c629ec0d919bd55cb9c8d9eb435bc37
+      with:
+        args: >
+          -Dsonar.organization=knoldus
+          -Dsonar.projectKey=SonarAnalysisTest
+          -Dsonar.sources=.
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.branch.name=master
